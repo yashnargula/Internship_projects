@@ -1,0 +1,407 @@
+/* ============================================
+   N8N-STYLE NODE DESIGN
+   ============================================ */
+
+/* Base node container - n8n style */
+.vs-node {
+  width: 240px;
+  min-height: 100px;
+  background: #ffffff;
+  border-radius: 8px;
+  color: #1f2937;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vs-node:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-color: #9ca3af;
+}
+
+/* Header - n8n style (colored top bar) */
+.vs-node-header {
+  font-weight: 600;
+  padding: 12px 16px;
+  color: #ffffff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.vs-node-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Body styling */
+.vs-node-body {
+  padding: 16px;
+}
+
+.vs-node-body label {
+  display: block;
+  margin-bottom: 12px;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.vs-node-body input,
+.vs-node-body select,
+.vs-node-body textarea {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 4px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  color: #1f2937;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.vs-node-body input:focus,
+.vs-node-body select:focus,
+.vs-node-body textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.vs-node-body input::placeholder,
+.vs-node-body textarea::placeholder {
+  color: #9ca3b8;
+}
+
+/* Node type-specific header colors - n8n style */
+.react-flow__node-inputNode .vs-node-header {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.react-flow__node-llmNode .vs-node-header {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.react-flow__node-textNode .vs-node-header {
+  background: linear-gradient(135deg, #0ea5e9, #0369a1);
+}
+
+.react-flow__node-outputNode .vs-node-header {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.react-flow__node-deleteNode .vs-node-header {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* New nodes with n8n style */
+.react-flow__node-conditionNode .vs-node-header {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.react-flow__node-calculatorNode .vs-node-header {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.react-flow__node-fileProcessorNode .vs-node-header {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.react-flow__node-joinNode .vs-node-header {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+}
+
+.react-flow__node-splitNode .vs-node-header {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+/* Delete node specific styling */
+.react-flow__node-deleteNode .vs-node-body {
+  background: #fef2f2;
+}
+
+.react-flow__node-deleteNode select {
+  background: #ffffff;
+  border: 1px solid #fca5a5;
+}
+
+.react-flow__node-deleteNode button {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.react-flow__node-deleteNode button:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+}
+
+/* Range input styling */
+.vs-node-body input[type="range"] {
+  width: 100%;
+  height: 4px;
+  margin-top: 8px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.vs-node-body input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.vs-node-body input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   N8N-STYLE HANDLES & CONNECTIONS
+   ============================================ */
+
+/* Main handle container - positioned at edges */
+.react-flow__handle {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px #d1d5db, 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+/* Input handles on LEFT edge */
+.react-flow__handle-left {
+  left: -6px;
+}
+
+/* Output handles on RIGHT edge */
+.react-flow__handle-right {
+  right: -6px;
+}
+
+/* Handle colors based on connection type */
+.react-flow__handle {
+  background: #ffffff;
+}
+
+.react-flow__handle:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px #3b82f6, 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Selected/active handle */
+.react-flow__handle.connectionindicator {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+/* Connection line styling */
+.react-flow__edge-path {
+  stroke: #6b7280;
+  stroke-width: 2;
+  stroke-dasharray: 5, 5;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #3b82f6;
+  stroke-width: 3;
+  stroke-dasharray: none;
+}
+
+/* Edge button for adding connections */
+.react-flow__edge-updater {
+  cursor: pointer;
+  fill: #ffffff;
+  stroke: #6b7280;
+  stroke-width: 1;
+}
+
+/* Connection line animation */
+@keyframes dash {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+  animation: dash 1s linear infinite;
+}
+
+/* ============================================
+   NODE INTERNAL HANDLE POSITIONING
+   ============================================ */
+
+/* For nodes with multiple handles, space them vertically */
+.handle-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  z-index: 1;
+}
+
+.handle-container.left {
+  left: -10px;
+}
+
+.handle-container.right {
+  right: -10px;
+}
+
+/* Text node specific handle positioning */
+.text-node-handles {
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ============================================
+   ADDITIONAL STYLING
+   ============================================ */
+
+/* Active/selected node styling */
+.react-flow__node.selected .vs-node {
+  box-shadow: 0 0 0 2px #3b82f6, 0 4px 12px rgba(59, 130, 246, 0.15);
+  border-color: #3b82f6;
+}
+
+/* Helper text styling */
+.vs-node-helper-text {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 8px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* Range value display */
+.range-value-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.range-value {
+  font-weight: 600;
+  color: #1f2937;
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Select dropdown styling */
+.vs-node-body select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 32px;
+}
+
+/* Card footer for status (optional) */
+.vs-node-footer {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 10px;
+  color: #6b7280;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .vs-node {
+    width: 200px;
+    min-height: 90px;
+  }
+  
+  .vs-node-header {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+  
+  .vs-node-body {
+    padding: 12px;
+  }
+}
+
+/* ============================================
+   N8N-STYLE NODE STATES
+   ============================================ */
+
+/* Success state */
+.react-flow__node.success .vs-node-header {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* Warning state */
+.react-flow__node.warning .vs-node-header {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* Error state */
+.react-flow__node.error .vs-node-header {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* Disabled state */
+.react-flow__node.disabled .vs-node {
+  opacity: 0.6;
+  filter: grayscale(1);
+  cursor: not-allowed;
+}
+
+.react-flow__node.disabled .vs-node-header {
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
+}

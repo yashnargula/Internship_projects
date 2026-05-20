@@ -1,0 +1,5 @@
+{
+  "name": "Solar System Gestural Engine",
+  "description": "An interactive 3D solar system controlled by hand gestures using MediaPipe and Three.js.",
+  "requestFramePermissions": ["camera"]
+}
