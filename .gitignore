@@ -1,2 +1,15 @@
 "node_modules/" 
 "*.mp4" 
+# Node modules
+node_modules/
+
+# Build cache
+.cache/
+*.pack
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
